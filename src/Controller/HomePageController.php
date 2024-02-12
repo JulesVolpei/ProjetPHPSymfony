@@ -13,6 +13,16 @@ class HomePageController extends AbstractController
     {
         $params =  [
             'controller_name' => 'HomePageController',
+            'menu' => [
+                0 => [
+                    'url' => '/discotheque',
+                    'name' => 'Discothèque',
+                ],
+                1 => [
+                    'url' => '/',
+                    'name' => 'Toto',
+                ],
+            ],
         ];
         
         return $this->render('home_page/index.html.twig', $params);
