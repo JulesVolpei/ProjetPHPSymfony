@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomePageController!{% endblock %}
+
+{% block body %}
+<header>
+<div class="menu">
+    <img alt="user icon"/>
+    {% for link in menu %}
+        <a href="{{link.url}}">
+            {{link.name}}
+        </a>
+        
+    {% endfor %}
+</div>
+
+</header>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code>D:/sites/dev avancé/TuttiFrutti/src/Controller/HomePageController.php</code></li>
+        <li>Your template at <code>D:/sites/dev avancé/TuttiFrutti/templates/home_page/index.html.twig</code></li>
+    </ul>
+</div>
+{% endblock %}
