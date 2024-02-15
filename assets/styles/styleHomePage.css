@@ -1,0 +1,124 @@
+
+
+
+li {
+    list-style: none;
+}
+
+
+h1 {
+    font-size: 6rem;
+    margin-top: 0;
+    text-align: center;
+}
+
+.background-beige {
+    background-image: url("background-beige.webp") ;
+}
+
+.background-red {
+    background-image: url("red-background.jpg") ;
+}
+
+.background-pink {
+    background-image: url("pink-background.jpg");
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+
+.mid-section {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bot-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+
+.home-logo {
+    width: 9rem;
+    height: auto;
+}
+
+.profil-logo {
+    width: 4rem;
+    height: auto;
+}
+
+.nav-page{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.InputContainer {
+    width: 50rem;
+    height: 6.250rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
+    border-radius: 1.875rem;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0.125rem 0.125rem 0.625rem rgba(0, 0, 0, 0.075); 
+}
+
+.input {
+    width: 48rem;
+    height: 5rem;
+    border: none;
+    outline: none;
+    text-align: center;
+    caret-color: rgb(255, 81, 0);
+    background-color: rgb(255, 255, 255);
+    border-radius: 1.875rem; 
+    padding-left: 0.9375rem;
+    letter-spacing: 0.05rem; 
+    color: rgb(19, 19, 19);
+    font-size: 1.7rem; 
+}
+
+
+
+.saladfruit:hover {
+    animation: rotate 0.3s linear infinite both;
+}
+
+@keyframes rotate {
+    0% {
+        -webkit-transform: translate(0);
+        transform: rotate(0deg);
+    }
+
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(1deg);
+    }
+
+    40% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(0deg);
+    }
+
+    60% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(-1deg);
+    }
+
+    80% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(0deg);
+    }
+
+}
