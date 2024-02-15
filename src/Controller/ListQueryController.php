@@ -20,24 +20,22 @@ class ListQueryController extends AbstractController
         ]);
     }
 
-    protected function getListByName(Fruit $fruit) : String {
+    protected function getListByName(Fruit $fruit) : Array|null {
         $client = HttpClient::create();
         $client = $client->withOptions([
             'headers' => [
                 'Authorization' => 'Discogs key="wngrIEFFNrZUEouixDyS", secret="zvlGcAFBaRffmCfKNbNiAvEWLxqQBzQR"',
                 'User-Agent' =>  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
             ],
-            'config' => []
         ]);
-        try {
-            $response = $client->request(
-                'GET',
-                'https://api.discogs.com/database/search?release_title=nevermind&artist=nirvana&per_page=3&page=1'
-            );
-        } catch (ServerException $th) {
-            dd($response);   
-        }
-        
+
+        $response = $client->request(
+            'GET',
+            'https://api.discogs.com/database/search?release_title=nevermind&artist=nirvana&per_page=3&page=1'
+        );
+
+        dd($response->getContent());   
+
         return json_decode('');
     }
 }
