@@ -10,10 +10,8 @@
 
 <div class="example-wrapper">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>D:/sites/dev avancé/TuttiFrutti/src/Controller/ListQueryController.php</code></li>
-        <li>Your template at <code>D:/sites/dev avancé/TuttiFrutti/templates/list_query/index.html.twig</code></li>
-    </ul>
+    {% for item in reponse %}
+        <p><a target="_blank" href="{{item.resource_url}}">{{item.title}}</a></p>
+    {% endfor %}
 </div>
 {% endblock %}
