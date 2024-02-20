@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Fruit;
+use App\Entity\Translation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,33 +18,30 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class FruitRepository extends ServiceEntityRepository
 {
+
+    public ?EntityManager $entityManager = null; 
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Fruit::class);
     }
 
-//    /**
-//     * @return Fruit[] Returns an array of Fruit objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public static function getTraductions(Fruit $fruit): array
+    {
+        return Translation::getTranslationByObjectId($fruit->getId(), $fruit->entityManager);
+    }
 
-//    public function findOneBySomeField($value): ?Fruit
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+
+    public function save(Fruit $fruit,array $traductions = [], ?int $id_fruit = null) : void {
+        if (count($traductions) > 0) {
+            if(is_null($id_fruit)){
+                $id_fruit = $fruit->getId();
+            }
+            $this->setTraductions($traductions,$id_fruit);
+        }
+        $this->entityManager->persist($fruit);
+        $this->entityManager->flush();
+
+    }
+
 }

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FruitRepository;
-use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FruitRepository::class)]
@@ -14,23 +14,20 @@ class Fruit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY)]
-    private array $traductions = [];
+    public $entityManager;
+
+    public function __construct(int $id, EntityManagerInterface $entityManager)
+    {
+        $this->id = $id;
+        $this->entityManager = $entityManager;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTraductions(): array
-    {
-        return $this->traductions;
-    }
-
-    public function setTraductions(array $traductions): static
-    {
-        $this->traductions = $traductions;
-
-        return $this;
+    public function getTranslations(){
+        return FruitRepository::getTraductions($this);
     }
 }
