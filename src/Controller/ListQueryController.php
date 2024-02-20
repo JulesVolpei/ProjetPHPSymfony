@@ -11,15 +11,26 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ListQueryController extends AbstractController
 {
-    #[Route('/list_query', name: 'app_list_query')]
-    public function index(EntityManagerInterface $entityManager): Response
+    #[Route('/list_query/{idFruit}', name: 'app_list_fruit')]
+    public function fruitResult(EntityManagerInterface $entityManager, int $idFruit = null): Response
     {
-        $idFruit = $_GET['id_fruit'];
         $fruit = new Fruit($idFruit,$entityManager);
+        
         return $this->render('list_query/index.html.twig', [
             'reponse' => $this->getListByName($fruit),
         ]);
     }
+
+    #[Route('/list_query', name: 'app_list_query', priority: 2)]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        return $this->render('list_query/index.html.twig', [
+            'reponse' => [],
+        ]);
+    }
+
+    
+
 
     protected function getListByName(Fruit $fruit) : mixed {
         $client = HttpClient::create();
