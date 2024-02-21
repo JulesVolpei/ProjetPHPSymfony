@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ListQueryController!{% endblock %}
+{% block title %}Hello ReleaseController!{% endblock %}
 
 {% block body %}
 <style>
@@ -11,7 +11,9 @@
 <div class="example-wrapper">
     <p>Utilises "reponse"</p>
     {% for item in reponse %}
-        <p><a target="_blank" href="{{item.resource_url}}">{{item.title}}</a></p>
+        <pre>
+            {{ dump(item) }}
+        </pre>
     {% endfor %}
 </div>
 {% endblock %}
