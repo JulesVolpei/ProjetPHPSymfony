@@ -10,9 +10,10 @@
 
 <div class="example-wrapper">
     <p>Utilises "reponse"</p>
-    {% for item in reponse %}
+    <h1>{{reponse.title}}</h1>
+    {% for key,item in reponse %}
         <pre>
-            {{ dump(item) }}
+            {{ dump(key, item) }}
         </pre>
     {% endfor %}
 </div>
