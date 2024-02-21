@@ -6,7 +6,7 @@ use Symfony\Component\HttpClient\HttpClient;
 
 class DiscogsApi
 {
-    public function getListByFruit(Fruit $fruit) : array {
+    public function getListByFruit(Fruit $fruit, int $page) : array {
         $client = HttpClient::create();
         $client = $client->withOptions([
             'headers' => [
@@ -16,13 +16,11 @@ class DiscogsApi
         ]);
         $translations = $fruit->getTranslations();
         $responses = [];
-        foreach ($translations as $query){
-            $responses = array_merge($responses, json_decode($client->request(
+        $responses = json_decode($client->request(
                 'GET',
-                'https://api.discogs.com/database/search?release_title='.$query.'&artist='.$query.'&per_page=5&page=1'
-            )->getContent(),true)['results']);
-        }
-        
+                'https://api.discogs.com/database/search?type=release&q='. implode('||',$translations).'&per_page=10&page='. $page
+            )->getContent(),true);
+        $responses['results'] = $this->sortByPopularity($responses['results']);
         return $responses;
     }
 
@@ -36,4 +34,21 @@ class DiscogsApi
                 
         return $response;
     }
+
+    private function compareScore($a, $b) {
+        if ($a['score'] == $b['score']) {
+            return 0;
+        }
+        return ($a['score'] < $b['score']) ? 1 : -1;
+    }
+
+    private function sortByPopularity(array $responses) : array {
+        foreach ($responses as &$release) {
+            $release['score'] = $release['community']['want'] + $release['community']['have']*2;
+        }
+        usort($responses, [$this::class,'compareScore']);
+        return $responses;
+    }
+
+    
 }

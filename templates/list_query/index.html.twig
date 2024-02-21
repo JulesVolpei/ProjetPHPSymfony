@@ -9,9 +9,42 @@
 </style>
 
 <div class="example-wrapper">
-    <p>Utilises "reponse"</p>
+    <p>Utilises "reponse" et "pagination"</p>
+
+    {# Liste des résultat de la recherche #}
     {% for item in reponse %}
         <p><a target="_blank" href="/release/{{item.id}}">{{item.title}}</a></p>
     {% endfor %}
+
+    {% set firstPage = false %}
+    {% if pagination.page == 1 %}
+        {% set firstPage = true %}
+    {% endif %}
+
+    {% set lastPage = false %}
+    {% if pagination.page == pagination.pages %}
+        {% set lastPage = true %}
+    {% endif %}
+
+    {# Pagination #}
+    <p>
+    {% if not firstPage %}
+        <a href="/list_query/{{ fruit }}/page-{{ pagination.page - 1 }}">
+    {% endif %}
+        <
+    {% if not firstPage %}
+        </a>
+    {% endif %}
+    
+        Page : {{ pagination.page }} / {{ pagination.pages }}
+    {% if not lastPage %}
+        <a href="/list_query/{{ fruit }}/page-{{ pagination.page + 1 }}">
+    {% endif %}
+        >
+    {% if not lastPage %}
+        </a>
+    {% endif %}
+    
+
 </div>
 {% endblock %}
