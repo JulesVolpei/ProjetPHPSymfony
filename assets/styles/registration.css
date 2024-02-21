@@ -1,0 +1,65 @@
+.userRegistration {
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+    width: 50%;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 24px;
+    background: #ffffff;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0);
+}
+
+.titreRegistration {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 0 20px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.formulaireLogin {
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+}
+
+.formulaireLogin input,
+.formulaireLogin button {
+    width: 100%;
+    height: 56px;
+    border-radius: 28px;
+    font-size: 16px;
+}
+
+.formulaireLogin input[type="text"]::placeholder,
+.formulaireLogin input[type="password"]::placeholder {
+    text-align: center;
+}
+
+.formulaireLogin input[type="text"],
+.formulaireLogin input[type="password"] {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.conteneur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
