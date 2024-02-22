@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\WebLink\Link;
 
 class HomePageController extends AbstractController
 {
@@ -16,7 +17,7 @@ class HomePageController extends AbstractController
             'menu' => [
                 0 => [
                     'url' => '/discographie',
-                    'name' => 'Discothèque',
+                    'name' => 'Discographie',
                 ],
                 1 => [
                     'url' => '/nouveau-compte',
@@ -24,7 +25,7 @@ class HomePageController extends AbstractController
                 ],
             ],
         ];
-        
+
         return $this->render('home_page/index.html.twig', $params);
     }
 }

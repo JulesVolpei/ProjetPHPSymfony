@@ -44,4 +44,9 @@ class FruitRepository extends ServiceEntityRepository
 
     }
 
+    public function getRandomFruit() : int{
+        $fruits = $this->findAll();
+        $return = array_rand($fruits) + 1;
+        return $return;
+    }
 }
