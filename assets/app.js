@@ -8,7 +8,7 @@ import './bootstrap.js';
 import './styles/app.css'; 
 import './styles/userLogin.css';
 import './styles/registration.css';
-import './styles/releases.css'
+import './styles/autocompletion.css';
 
 import './js/jquery-3.7.1.min.js';
 import './js/random.js';

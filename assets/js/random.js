@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let saladFruit = $('#saladfruitConnected');
+    let saladFruit = $('.saladfruit');
     if (saladFruit.length > 0) {
         saladFruit.click(function() {
             getRandomFruit();

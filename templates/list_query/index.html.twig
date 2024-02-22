@@ -3,50 +3,68 @@
 {% block title %}Hello ListQueryController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-<div class="example-wrapper">
-    <p>Utilises "reponse" et "pagination"</p>
+    <main>
+        <section class="top-section">
+            <section class="profil-button">
+                <img src="{{ asset('img/icone-profil.png') }}" class="profil-logo">
+                <section class="dropdown-content">
+                    <a href="#" class="top">My Discography</a>
+                    <a href="#" class="bottom">Log Out</a>
+                </section>
+            </section>
+            <h1>{{ titre }}</h1>
+        </section>
 
-    <h1>{{ titre }}</h1>
+        <section class="cards-music">
+            {# Liste des résultat de la recherche #}
+            {% for item in reponse %}
+                <section class="card">
+                    {% if item.cover_image %}
+                        <img src="{{ item.cover_image }}" class="cover-image">
+                    {% endif %}
+                    <p><a target="_blank" class="card-title" href="/release/{{item.id}}">{{item.title}}</a></p>
+                </section>
+            {% endfor %}
 
-    {# Liste des résultat de la recherche #}
-    {% for item in reponse %}
-        <p><a target="_blank" href="/release/{{item.id}}">{{item.title}}</a></p>
-    {% endfor %}
+            {% set firstPage = false %}
+            {% if pagination.page == 1 %}
+                {% set firstPage = true %}
+            {% endif %}
 
-    {% set firstPage = false %}
-    {% if pagination.page == 1 %}
-        {% set firstPage = true %}
-    {% endif %}
+            {% set lastPage = false %}
+            {% if pagination.page == pagination.pages %}
+                {% set lastPage = true %}
+            {% endif %}
 
-    {% set lastPage = false %}
-    {% if pagination.page == pagination.pages %}
-        {% set lastPage = true %}
-    {% endif %}
+        </section>
 
-    {# Pagination #}
-    <p>
-    {% if not firstPage %}
-        <a href="/list_query/{{ fruit }}/page-{{ pagination.page - 1 }}">
-    {% endif %}
-        <
-    {% if not firstPage %}
-        </a>
-    {% endif %}
-    
-        Page : {{ pagination.page }} / {{ pagination.pages }}
-    {% if not lastPage %}
-        <a href="/list_query/{{ fruit }}/page-{{ pagination.page + 1 }}">
-    {% endif %}
-        >
-    {% if not lastPage %}
-        </a>
-    {% endif %}
-    
+        <section class="mid-section">
+            {# Pagination #}
+            <p>
+                {% if not firstPage %}
+                <a href="/list_query/{{ fruit }}/page-{{ pagination.page - 1 }}">
+                    {% endif %}
+                    <
+                    {% if not firstPage %}
+                </a>
+                {% endif %}
 
-</div>
+                Page : {{ pagination.page }} / {{ pagination.pages }}
+                {% if not lastPage %}
+                <a href="/list_query/{{ fruit }}/page-{{ pagination.page + 1 }}">
+                    {% endif %}
+                    >
+                    {% if not lastPage %}
+                </a>
+                {% endif %}
+        </section>
+        </section>
+    </main>
+
+
 {% endblock %}
