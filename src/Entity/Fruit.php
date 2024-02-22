@@ -16,7 +16,7 @@ class Fruit
 
     public $entityManager;
 
-    public function __construct(int $id, EntityManagerInterface $entityManager)
+    public function __construct(int $id = null, EntityManagerInterface $entityManager)
     {
         $this->id = $id;
         $this->entityManager = $entityManager;
@@ -29,5 +29,10 @@ class Fruit
 
     public function getTranslations(){
         return FruitRepository::getTraductions($this);
+    }
+
+    public static function getRandomId(FruitRepository $fruitRepository):int{
+        $fruitRepository->getRandomFruit();
+        return 0;
     }
 }

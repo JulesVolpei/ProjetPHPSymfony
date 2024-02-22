@@ -15,6 +15,7 @@ class DiscogsApi
             ],
         ]);
         $translations = $fruit->getTranslations();
+        $responses['fruitLabel'] = $translations[1];
         $responses = [];
         $responses = json_decode($client->request(
                 'GET',
