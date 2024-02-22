@@ -9,19 +9,57 @@
     <div class="releasesCarte">
         <img src="" class="releasesImage"/>
         <div class="releasesContenu">
-            <h2 class="releasesTitre">{{reponse.title}}</h2>
+            <h3 class="releasesTitre">{{reponse.title}}</h3>
             <ul class="releasesStatistiques">
                 <li>
                     {{reponse.title}}
-                    ({{reponse.year}})
-                    par {{reponse.artists[0].name}}
+                    {% if reponse.year != 0 %}
+                        ({{ reponse.year }})
+                    {% endif %}
+                    <br>
+                    par {{reponse.artists[0].name}} <br>
+                    {% if reponse.released is defined %}
+                        {{reponse.released}}
+                    {% endif %}
+                    {% if reponse.styles is defined and reponse.styles|length > 1 %}
+                    <p class="styleEtGenreTexte"> Styles : </p>
+                        <ul>
+                            {% for style in reponse.styles %}
+                                <li class="styleEtGenreTexte"> - {{ style }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <p class="styleEtGenreTexte"> Style : </p>
+                    <ul>
+                        <li class="styleEtGenreTexte"> - {{reponse.styles[0]}} </li>
+                    </ul>
+                    {% endif %}
+                    {% if reponse.genres is defined and reponse.genres|length > 1 %}
+                    <p class="styleEtGenreTexte"> Genres : </p>
+                        <ul>
+                            {% for genre in reponse.genres %}
+                                <li class="styleEtGenreTexte"> - {{ genre }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <p class="styleEtGenreTexte"> Genre : </p>
+                    <ul>
+                        <li class="styleEtGenreTexte"> - {{reponse.genres[0]}} </li>
+                    </ul>
+                    {% endif %}
                     <!-- les stats-->
                 </li>    
             </ul>
-            <nav class="releasesNav">
-                <button class="realeasesAjouterFavoris"> Ajouter </button>
-            </nav>    
+            <button class="realeasesAjouterFavoris"> Ajouter </button>
         </div>    
+    </div>
+    <br>
+    <div class="tracklistConteneur">
+    {% for track in reponse.tracklist %}
+
+        <div class="track"> {{ track.title }} </h3>
+
+    {% endfor %}
     </div>
     {% for key,item in reponse %}
         <pre>
