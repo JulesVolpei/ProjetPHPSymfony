@@ -9,7 +9,11 @@
                 <img src="{{ asset('img/icone-profil.png') }}" class="profil-logo">
                 <section class="dropdown-content">
                     <a href="#" class="top">My Discography</a>
-                    <a href="#" class="bottom">Log Out</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a href="{{ path('app_logout') }}" class="bottom">Log Out</a>
+                    {% else %}
+                    <a href="{{ path('app_login') }}" class="bottom">Log In</a>
+                    {% endif %}
                 </section>
             </section>
             <img src="{{ asset('img/tuttitle.png') }}" class="title">
