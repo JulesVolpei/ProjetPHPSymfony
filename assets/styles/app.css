@@ -97,13 +97,14 @@ h2 {
     font-size: 13px;
     position: absolute;
     top: 100%;
-    left: 0;
+    left: 3;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border: 2px solid #ff8800;
     border-radius: 0px 15px 15px 15px;
+    margin-left: 1.5rem;
 }
 
 .profil-button:hover .dropdown-content {
@@ -128,21 +129,23 @@ h2 {
     color: #ff8800;
 }
 
-.dropdown-content #top:hover {
+.top:hover {
     border-radius: 0px 13px 0px 0px;
 }
 
-.dropdown-content #bottom:hover {
+.top:focus {
+    border-radius: 0px 13px 0px 0px;
+}
+
+
+.bottom:hover {
     border-radius: 0px 0px 13px 13px;
 }
 
-.paste-button:hover button {
-    border-radius: 15px 15px 0px 0px;
+.bottom:focus {
+    border-radius: 0px 0px 13px 13px;
 }
 
-.paste-button:hover .dropdown-content {
-    display: block;
-}
 
 .saladfruit:hover {
     animation: rotate 0.3s linear infinite both;
