@@ -12,19 +12,6 @@ import './styles/registration.css';
 import './js/jquery-3.7.1.min.js';
 import './js/random.js';
 
+import './js/switchCSS.js';
+
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
-
-var titre = document.title;
-
-switch (titre) {
-    case 'Tutti Frutti':
-        document.getElementById('css').setAttribute('href', './styles/app.css');
-        break;
-    case 'Connexion':
-        document.getElementById('css').setAttribute('href', './styles/userLogin.css');
-        break;
-    case 'Création de compte':
-        document.getElementById('css').setAttribute('href', './styles/registration.css');
-        break;
-    // Ajouter un case pour chaque nouvelle page
-}
