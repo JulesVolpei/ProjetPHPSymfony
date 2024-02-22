@@ -10,7 +10,7 @@ class DiscogsApi
         $client = HttpClient::create();
         $client = $client->withOptions([
             'headers' => [
-                'Authorization' => 'Discogs key="wngrIEFFNrZUEouixDyS", secret="zvlGcAFBaRffmCfKNbNiAvEWLxqQBzQR"',
+                'Authorization' => 'Discogs key=' . $_ENV["DISCOG_KEY"] . ', secret=' . $_ENV["DISCOG_SECRET"],
                 'User-Agent' =>  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
             ],
         ]);
