@@ -20,7 +20,7 @@ switch (titre) {
     case 'Tutti Frutti':
         document.getElementById('css').setAttribute('href', './styles/app.css');
         break;
-    case 'Log in!':
+    case 'Connexion':
         document.getElementById('css').setAttribute('href', './styles/userLogin.css');
         break;
     case 'Création de compte':
