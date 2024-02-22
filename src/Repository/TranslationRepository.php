@@ -21,6 +21,24 @@ class TranslationRepository extends ServiceEntityRepository
         parent::__construct($registry, Translation::class);
     }
 
+    public function getListBySelectInput(string $input): array{
+        $trads = $this->createQueryBuilder('v')
+        ->where('v.content LIKE :input')
+        ->setParameter('input', ucfirst($input) . '%')
+        ->getQuery()
+        ->getResult();
+
+        $fruitList = [];
+        foreach ($trads as $trad) {
+            $fruitList[] = [
+                'content' => $trad->getContent(),
+                'url' => '/list_query/'. $trad->getIdObject() .'/page-1',
+            ];
+        }
+
+        return $fruitList;
+    }
+
 //    /**
 //     * @return Translation[] Returns an array of Translation objects
 //     */

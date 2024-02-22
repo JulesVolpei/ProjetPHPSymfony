@@ -1,0 +1,3 @@
+{% for key,item in fruitData %}
+    <a  class="clickable {% if key % 2 %}impair{% endif %}" href="{{ item.url }}"><p>{{ item.content }}</p></a>
+{% endfor %}
