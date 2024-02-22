@@ -5,7 +5,6 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <p>Utilises "reponse"</p>
     <div class="releasesCarte">
         <img src="" class="releasesImage"/>
         <div class="releasesContenu">
@@ -55,9 +54,37 @@
     </div>
     <br>
     <div class="tracklistConteneur">
+    <h2 class="titreDivTrack"> Tracks </h2>
     {% for track in reponse.tracklist %}
 
-        <div class="track"> {{ track.title }} </h3>
+        <div class="track"> 
+           <h3 class="trackTitre"> {{ track.title }} </h3>
+
+           <!-- Élémeénts de la tracklists (durée et position) s'ils sont définis-->
+            {% if track.extraartists is defined %}
+                {% if track.extraartists|length > 1 %}
+                <p class="trackAvec"> Avec : </p>
+                {% for artist in track.extraartists %}
+                     <p class="trackArtistes"> - {{artist.name}} </p>
+                {% endfor %}
+                {% else %}
+                <p class="trackAvec"> Avec : </p>
+                <p class="trackArtistes"> - {{track.extraartists[0].name}}
+                {% endif %}
+            {% endif %}
+
+            {% if track.artists is defined %}
+                {% if track.artists|length > 1 %}
+                    <p class="trackAvec"> Avec : </p>
+                    {% for artist in track.artists %}
+                        <p class="trackArtistes"> - {{artist.name}} </p>
+                    {% endfor %}
+                    {% else %}
+                    <p class="trackAvec"> Avec : </p>
+                    <p class="trackArtistes"> - {{track.artists[0].name}}
+                {% endif %}
+            {% endif %}
+        </div>
 
     {% endfor %}
     </div>

@@ -31,7 +31,9 @@
 }
 
 .releasesTitre {
-    font-size: 16px;
+    font-family: "GentyDemo";
+    color: #f89f3d;
+    font-size: 30px;
     margin: 0 0 20px;
 }
 
@@ -47,7 +49,7 @@
 }
 
 .realeasesAjouterFavoris:hover {
-    background-color: #149414;
+    background-color: #f89f3d;
     color: #fff;
 }
 
@@ -64,8 +66,37 @@
 
 .track {
     margin-bottom: 10px;
+    
+}
+
+.trackTitre {
+    font-family: "GentyDemo";
+    color: #f89f3d;
+    font-size: 30px;
 }
 
 .styleEtGenreTexte {
     font-size: 14px;
+}
+
+.trackArtistes {
+    margin: 5px 0;
+}
+
+.trackArtistes:first-child {
+    margin-top: 0;
+}
+
+.trackArtistes:last-child {
+    margin-bottom: 0;
+}
+
+.trackAvec {
+    margin: 0;
+}
+
+.titreDivTrack {
+    font-family: "GentyDemo";
+    color: #f89f3d;
+    font-size: 50px;
 }
