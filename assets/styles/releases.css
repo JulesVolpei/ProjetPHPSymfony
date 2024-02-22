@@ -1,0 +1,52 @@
+.example-wrapper {
+    margin: 1em auto;
+    max-width: 800px;
+    width: 95%;
+    font: 18px/1.5 sans-serif;
+}
+
+.example-wrapper code { 
+    background: #F5F5F5;
+    padding: 2px 6px; 
+}
+
+.releasesCarte {
+    display: flex;
+    align-items: center;
+    width: 75vw;
+    max-width: 650px;
+    padding: 50px 30px 50px 20px;
+    background: #fff;
+    border-radius: 24px;
+}
+
+.releasesImage {
+    max-width: 280px;
+    width: 32vw;
+    height: 270px;
+    object-fit: cover;
+    margin-left: -60px;
+    margin-right: 40px;
+    border-radius: inherit;
+}
+
+.releasesTitre {
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+
+.realeasesAjouterFavoris {
+    border: 1px solid #a7a7a7;
+    background: transparent;
+    color: #a7a7a7;
+    font-family: inherit;
+    padding: 16px 20px;
+    font-size: 18px;
+    border-radius: 6px;
+    min-width: 160px;
+}
+
+.realeasesAjouterFavoris:hover {
+    background-color: #149414;
+    color: #fff;
+}

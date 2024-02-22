@@ -22,13 +22,13 @@
         </section>
 
         <section class="mid-section">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a class="saladfruit" id="saladfruitConnected"><img src="{{ asset('img/saladfruit.png') }}"></a>
-            <input class="input" name="text" placeholder="Search a fruit..." type="search">
-            {% else %}
             <a class="saladfruit"><img src="{{ asset('img/saladfruit.png') }}"></a>
-            <input class="input" name="text" placeholder="Search a fruit..." type="search">
-            {% endif %}
+            <section class="selectFruit">
+            
+                <input class="input" name="text" placeholder="Search a fruit..." type="search">
+                <section class="autocompletion">
+                </section>
+            </section>
         </section>
     </main>
 {% endblock %}

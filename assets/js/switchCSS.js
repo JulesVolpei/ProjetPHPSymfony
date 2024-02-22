@@ -10,5 +10,8 @@ switch (titre) {
     case 'Création de compte':
         document.getElementById('css').setAttribute('href', './styles/registration.css');
         break;
+    case 'Informations':
+        document.getElementById('css').setAttribute('href', './styles/releases.css');
+        break;
     // Ajouter un case pour chaque nouvelle page
 }

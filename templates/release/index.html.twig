@@ -1,16 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReleaseController!{% endblock %}
+{% block title %}Informations{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 <div class="example-wrapper">
     <p>Utilises "reponse"</p>
-    <h1>{{reponse.title}}</h1>
+    <div class="releasesCarte">
+        <img src="" class="releasesImage"/>
+        <div class="releasesContenu">
+            <h2 class="releasesTitre">{{reponse.title}}</h2>
+            <ul class="releasesStatistiques">
+                <li>
+                    {{reponse.title}}
+                    ({{reponse.year}})
+                    par {{reponse.artists[0].name}}
+                    <!-- les stats-->
+                </li>    
+            </ul>
+            <nav class="releasesNav">
+                <button class="realeasesAjouterFavoris"> Ajouter </button>
+            </nav>    
+        </div>    
+    </div>
     {% for key,item in reponse %}
         <pre>
             {{ dump(key, item) }}
