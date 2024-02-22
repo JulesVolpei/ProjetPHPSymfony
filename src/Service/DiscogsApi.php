@@ -22,6 +22,7 @@ class DiscogsApi
                 'https://api.discogs.com/database/search?type=release&q='. implode('||',$translations).'&per_page=10&page='. $page
             )->getContent(),true);
         $responses['results'] = $this->sortByPopularity($responses['results']);
+        $responses['titre'] = $translations[1];
         return $responses;
     }
 

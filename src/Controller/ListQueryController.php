@@ -45,6 +45,7 @@ class ListQueryController extends AbstractController
         return [
             'reponse' => $vars['results'],
             'pagination' => $vars['pagination'],
+            'titre' => $vars['titre'],
             'fruit' => $fruit->getId(),
         ];
     }
