@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste{% endblock %}
+{% block title %}Liste {{ titre }}{% endblock %}
 
 {% block body %}
     <style>
@@ -22,8 +22,7 @@
                     {% endif %}
                 </section>
             </section>
-            <img src="{{ asset('img/tuttitle.png') }}" class="title">
-            <h2>Choose a random fruit or select one !</h2>
+            <h1 class="title">{{ titre }}</h1>
         </section>
 
         <section class="cards-music">
