@@ -1,3 +1,176 @@
-body {
-    background-color: skyblue;
+li {
+    list-style: none;
+}
+
+h2 {
+    text-align: center;
+}
+
+.lemon-police {
+    font-family: "Lemon", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.background {
+    background-color: #e6e3c8;
+}
+
+.title {
+    display: block;
+    margin: 0 auto;
+    width: 50rem;
+    height: auto;
+}
+
+.profil-logo {
+    width: 4rem;
+    height: auto;
+}
+
+.nav-page {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-image {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+
+
+.mid-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bot-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+
+.input {
+    width: 26rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    outline: none;
+    border: 0.125rem solid #ff8800;
+    box-shadow: 0px 0.125rem 0.625rem rgba(255, 136, 0, 0.2);
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #ff5500;
+}
+
+.input::placeholder {
+    color: #ff8800;
+}
+
+.profil-button {
+    position: relative;
+    display: inline-block;
+}
+
+.button {
+    background-color: #ff8800;
+    color: #212121;
+    padding: 10px 15px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    font-size: 13px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: 2px solid #ff8800;
+    border-radius: 0px 15px 15px 15px;
+}
+
+.profil-button:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #ff8800;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #ff8800;
+    color: #212121;
+}
+
+.dropdown-content a:focus {
+    background-color: #212121;
+    color: #ff8800;
+}
+
+.dropdown-content #top:hover {
+    border-radius: 0px 13px 0px 0px;
+}
+
+.dropdown-content #bottom:hover {
+    border-radius: 0px 0px 13px 13px;
+}
+
+.paste-button:hover button {
+    border-radius: 15px 15px 0px 0px;
+}
+
+.paste-button:hover .dropdown-content {
+    display: block;
+}
+
+.saladfruit:hover {
+    animation: rotate 0.3s linear infinite both;
+}
+
+@keyframes rotate {
+    0% {
+        -webkit-transform: translate(0);
+        transform: rotate(0deg);
+    }
+
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(1deg);
+    }
+
+    40% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(0deg);
+    }
+
+    60% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(-1deg);
+    }
+
+    80% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: rotate(0deg);
+    }
 }
