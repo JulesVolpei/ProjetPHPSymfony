@@ -17,7 +17,7 @@ console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 var titre = document.title;
 
 switch (titre) {
-    case 'Hello HomePageController!':
+    case 'Tutti Frutti':
         document.getElementById('css').setAttribute('href', './styles/app.css');
         break;
     case 'Log in!':
