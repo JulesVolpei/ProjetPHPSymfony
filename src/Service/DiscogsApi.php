@@ -37,6 +37,29 @@ class DiscogsApi
         return $response;
     }
 
+    public function getReleaseImg(string $titleRelease, string $year, int $idRelease) : string {
+        $client = HttpClient::create();
+        $client = $client->withOptions([
+            'headers' => [
+                'Authorization' => 'Discogs key=' . $_ENV["DISCOG_KEY"] . ', secret=' . $_ENV["DISCOG_SECRET"],
+                'User-Agent' =>  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+            ],
+        ]); 
+        $response = json_decode($client->request(
+            'GET',
+            'https://api.discogs.com/database/search?type=release&release_title='.$titleRelease.'&year='.$year
+        )->getContent(),true)['results'];
+        $imageUrl = '';
+
+        foreach($response as $release){
+            if ($release['id'] == $idRelease){
+                $imageUrl = $release['cover_image'];
+            }
+        }
+                
+        return $imageUrl;
+    }
+
     private function compareScore($a, $b) {
         if ($a['score'] == $b['score']) {
             return 0;

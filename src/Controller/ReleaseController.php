@@ -12,8 +12,11 @@ class ReleaseController extends AbstractController
     #[Route('/release/{idRelease}', name: 'app_release')]
     public function index(int $idRelease, DiscogsApi $discogsApi): Response
     {
+        $reponse = $discogsApi->getDatas($idRelease);
+        $year = $reponse['released_formatted'];
         return $this->render('release/index.html.twig', [
-            'reponse' => $discogsApi->getDatas($idRelease),
+            'reponse' => $reponse,
+            'image' => $discogsApi->getReleaseImg($reponse['title'],$year,$idRelease),
         ]);
     }
 
