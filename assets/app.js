@@ -6,14 +6,15 @@ import './bootstrap.js';
  * which should already be in your base.html.twig.
  */
 import './styles/app.css'; 
+import './styles/userLogin.css';
+import './styles/registration.css';
+
 import './js/jquery-3.7.1.min.js';
 import './js/random.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
 
 var titre = document.title;
-console.log(titre);
-console.log(document.getElementById('css').getAttribute('href'));
 
 switch (titre) {
     case 'Hello HomePageController!':
