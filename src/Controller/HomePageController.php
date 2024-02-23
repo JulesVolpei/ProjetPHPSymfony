@@ -12,19 +12,39 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(): Response
     {
-        $params =  [
-            'controller_name' => 'HomePageController',
-            'menu' => [
-                0 => [
-                    'url' => '/discographie',
-                    'name' => 'Discographie',
+        $user = $this->getUser();
+
+        if (!$user) {
+            $params =  [
+                'controller_name' => 'HomePageController',
+                'menu' => [
+                    0 => [
+                        'url' => '/discographie',
+                        'name' => 'Discographie',
+                    ],
+                    1 => [
+                        'url' => '/nouveau-compte',
+                        'name' => 'créer un compte',
+                    ],
                 ],
-                1 => [
-                    'url' => '/nouveau-compte',
-                    'name' => 'créer un compte',
+            ];
+        } else {
+            $userId = $user->getId();
+            $params =  [
+                'controller_name' => 'HomePageController',
+                'menu' => [
+                    0 => [
+                        'url' => '/discographie',
+                        'name' => 'Discographie',
+                    ],
+                    1 => [
+                        'url' => '/nouveau-compte',
+                        'name' => 'créer un compte',
+                    ],
                 ],
-            ],
-        ];
+                'userID' => $userId,
+            ];
+        }
 
         return $this->render('home_page/index.html.twig', $params);
     }
