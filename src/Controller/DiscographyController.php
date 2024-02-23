@@ -9,23 +9,23 @@ use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\DiscographyRepository;
 use App\Repository\UserRepository;
+use App\Service\DiscogsApi;
+
 
 class DiscographyController extends AbstractController
 {
     #[Route('/{idUtilisateur}/discography', name: 'app_discography')]
-    public function index(DiscographyRepository $disco, mixed $idUtilisateur = null): Response
+    public function index(DiscographyRepository $disco, mixed $idUtilisateur = null, DiscogsApi $discogsApi): Response
     {
         $user = $this->getUser();
         $userDiscography = $disco->trouverLesReleases($user->getId());
-        if (! $userDiscography) {
-            $userDiscography = "Rien maintenant"; // À changer quand un user pourra ajouter en BD un idRelease
-        } else {
-            $userDiscography = "ÇA MARCHE !"; // À changer quand un user pourra ajouter en BD un idRelease
-        }
+        $userReleases = $discogsApi->getDatasAvecPlusieursReleases($userDiscography);
+
         return $this->render('discography/index.html.twig', [
             'controller_name' => 'DiscographyController',
             'utilisateur' => $user->getUserIdentifier(),
             'utilisateurDisco'=> $userDiscography,
+            'userReleases' => $userReleases,
         ]);
     }
 }
