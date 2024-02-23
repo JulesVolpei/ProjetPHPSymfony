@@ -46,7 +46,7 @@ class DiscographyRepository extends ServiceEntityRepository
 
     /*TODO: - Faire la requête pour avoir la discogrphy d'un utilisateur ✅
             - Faire en sorte que le bouton ajoute l'idRelease à l'utilisateur dans la table discography ✅
-            - Passer dans le controller le résultat
+            - Passer dans le controller le résultat (refaire la requête vers discogs avec les idReleases)
     */
 
 //    /**
