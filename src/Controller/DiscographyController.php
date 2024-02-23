@@ -12,17 +12,10 @@ use App\Repository\UserRepository;
 
 class DiscographyController extends AbstractController
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
     #[Route('/{idUtilisateur}/discography', name: 'app_discography')]
     public function index(DiscographyRepository $disco, mixed $idUtilisateur = null): Response
     {
-        $user = $this->entityManager->getRepository(User::class)->find($idUtilisateur);
+        $user = $this->getUser();
         $userDiscography = $disco->trouverLesReleases($user->getId());
         if (! $userDiscography) {
             $userDiscography = "Rien maintenant"; // À changer quand un user pourra ajouter en BD un idRelease
@@ -31,7 +24,7 @@ class DiscographyController extends AbstractController
         }
         return $this->render('discography/index.html.twig', [
             'controller_name' => 'DiscographyController',
-            'utilisateur' => $user->getUsername(),
+            'utilisateur' => $user->getUserIdentifier(),
             'utilisateurDisco'=> $userDiscography,
         ]);
     }
