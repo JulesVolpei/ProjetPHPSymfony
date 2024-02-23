@@ -24,15 +24,28 @@ class DiscographyRepository extends ServiceEntityRepository
     public function trouverLesReleases($userId): array
     {
         return $this->createQueryBuilder('d')
-            ->select('d.idRelease')
+            ->select('DISTINCT d.idRelease')
             ->where('d.id_user = :userId')
             ->setParameter('userId', $userId)
             ->getQuery()
             ->getResult();
     }
 
-    /*TODO: - Faire la requête pour avoir la discogrphy d'un utilisateur
-            - Faire en sorte que le bouton ajoute l'idRelease à l'utilisateur dans la table discography
+    public function ajouterReleaseAUser($userId, $releaseId)
+    {
+   
+        $discography = new Discography();
+
+        $discography->setIdUser($userId);
+        $discography->setIdRelease($releaseId);
+
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($discography);
+        $entityManager->flush();
+    }
+
+    /*TODO: - Faire la requête pour avoir la discogrphy d'un utilisateur ✅
+            - Faire en sorte que le bouton ajoute l'idRelease à l'utilisateur dans la table discography ✅
             - Passer dans le controller le résultat
     */
 

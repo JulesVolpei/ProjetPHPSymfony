@@ -46,7 +46,9 @@
                     <!-- les stats-->
                 </li>    
             </ul>
-            <button class="realeasesAjouterFavoris"> Ajouter </button>
+            <form action="{{ path('app_release', {'idRelease': reponse.id}) }}" method="post">
+                <button type="submit" class="realeasesAjouterFavoris">Ajouter</button>
+            </form>
         </div>    
     </div>
     <br>
