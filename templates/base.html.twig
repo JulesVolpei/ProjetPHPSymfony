@@ -12,19 +12,6 @@
         {% endblock %}
     </head>
     <body class="background">
-        <section class="top-section">
-            <section class="profil-button">
-                <img src="{{ asset('img/icone-profil.png') }}" class="profil-logo">
-                <section class="dropdown-content">
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="#" class="top">My Discography</a>
-                    <a href="{{ path('app_logout') }}" class="bottom">Log Out</a>
-                    {% else %}
-                    <a href="{{ path('app_login') }}" class="bottom">Log In</a>
-                    <a href="{{ path('app_register') }}" class="bottom">Register</a>
-                    {% endif %}
-                </section>
-            </section>
         {% block body %}{% endblock %}
     </body>
     <footer>
