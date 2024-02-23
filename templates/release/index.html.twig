@@ -12,13 +12,10 @@
             <ul class="releasesStatistiques">
                 <li>
                     {{reponse.title}}
-                    {% if reponse.year != 0 %}
-                        ({{ reponse.year }})
-                    {% endif %}
                     <br>
                     par {{reponse.artists[0].name}} <br>
-                    {% if reponse.released is defined %}
-                        {{reponse.released}}
+                    {% if reponse.year != 0 %}
+                        {{ reponse.year }}
                     {% endif %}
                     {% if reponse.styles is defined and reponse.styles|length > 1 %}
                     <p class="styleEtGenreTexte"> Styles : </p>
@@ -54,11 +51,15 @@
     </div>
     <br>
     <div class="tracklistConteneur">
-    <h2 class="titreDivTrack"> Tracks </h2>
+    <h2 class="titreDivTrack"> Tracklist </h2>
     {% for track in reponse.tracklist %}
 
         <div class="track"> 
-           <h3 class="trackTitre"> {{ track.title }} </h3>
+            {% if track.duration is defined and track.duration != "" %}
+           <h3 class="trackTitre"> {{ track.title }} - {{ track.duration }}</h3>
+           {% else %}
+           <h3 class="trackTitre"> {{ track.title }}</h3>
+           {%endif%}
 
            <!-- Élémeénts de la tracklists (durée et position) s'ils sont définis-->
             {% if track.extraartists is defined %}
