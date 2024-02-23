@@ -37,6 +37,27 @@ class DiscogsApi
         return $response;
     }
 
+    public function getDatasAvecPlusieursReleases(array $idReleases) : array {
+        $client = HttpClient::create();
+        $client = $client->withOptions([
+            'headers' => [
+                'Authorization' => 'Discogs key=' . $_ENV["DISCOG_KEY"] . ', secret=' . $_ENV["DISCOG_SECRET"],
+                'User-Agent' =>  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
+            ],
+        ]);
+        $releaseIds = [];
+        foreach ($idReleases as $release) {
+            $releaseIds[] = $release['idRelease'];
+        }
+                
+        $response = json_decode($client->request(
+            'GET',
+            'https://api.discogs.com/database/search?type=release&q='. implode('&&',$releaseIds)
+        )->getContent(),true);
+                
+        return $response;
+    }
+
     public function getReleaseImg(string $titleRelease, string $year, int $idRelease) : string {
         $client = HttpClient::create();
         $client = $client->withOptions([
