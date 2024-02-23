@@ -19,13 +19,20 @@ class DiscographyController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
-    #[Route('/{idUtilisateur<\d+>}/discography', name: 'app_discography')]
-    public function index(mixed $idUtilisateur = null): Response
+    #[Route('/{idUtilisateur}/discography', name: 'app_discography')]
+    public function index(DiscographyRepository $disco, mixed $idUtilisateur = null): Response
     {
-        $user = $this->entityManager->getRepository(User::class)->find($idUtilisateur)->getId();
+        $user = $this->entityManager->getRepository(User::class)->find($idUtilisateur);
+        $userDiscography = $disco->trouverLesReleases($user->getId());
+        if (! $userDiscography) {
+            $userDiscography = "Rien maintenant"; // À changer quand un user pourra ajouter en BD un idRelease
+        } else {
+            $userDiscography = "ÇA MARCHE !"; // À changer quand un user pourra ajouter en BD un idRelease
+        }
         return $this->render('discography/index.html.twig', [
             'controller_name' => 'DiscographyController',
-            'utilisateur' => $user,
+            'utilisateur' => $user->getUsername(),
+            'utilisateurDisco'=> $userDiscography,
         ]);
     }
 }

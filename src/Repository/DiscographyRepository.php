@@ -21,6 +21,21 @@ class DiscographyRepository extends ServiceEntityRepository
         parent::__construct($registry, Discography::class);
     }
 
+    public function trouverLesReleases($userId): array
+    {
+        return $this->createQueryBuilder('d')
+            ->select('d.idRelease')
+            ->where('d.id_user = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /*TODO: - Faire la requête pour avoir la discogrphy d'un utilisateur
+            - Faire en sorte que le bouton ajoute l'idRelease à l'utilisateur dans la table discography
+            - Passer dans le controller le résultat
+    */
+
 //    /**
 //     * @return Discography[] Returns an array of Discography objects
 //     */
