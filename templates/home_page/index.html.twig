@@ -4,32 +4,19 @@
 
 {% block body %}
     <main>
-        <section class="top-section">
-            <section class="profil-button">
-                <img src="{{ asset('img/icone-profil.png') }}" class="profil-logo">
-                <section class="dropdown-content">
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a href="{{ path('app_discography', {'idUtilisateur': userID}) }}" class="top">My Discography</a>
-                    <a href="{{ path('app_logout') }}" class="bottom">Log Out</a>
-                    {% else %}
-                    <a href="{{ path('app_login') }}" class="bottom">Log In</a>
-                    <a href="{{ path('app_register') }}" class="bottom">Register</a>
-                    {% endif %}
-                </section>
+            <section class="top-section">
+                <img src="{{ asset('img/tuttitle.png') }}" class="title">
+                <h2>Les musiques vous donnent la banane !</h2>
             </section>
-        <section class="top-section">
-            <img src="{{ asset('img/tuttitle.png') }}" class="title">
-            <h2>Les musiques vous donnent la banane !</h2>
-        </section>
 
-        <section class="mid-section">
-            <a class="saladfruit"><img src="{{ asset('img/saladfruit.png') }}"></a>
-            <section class="selectFruit">
-            
-                <input class="input" name="text" placeholder="Search a fruit..." type="search">
-                <section class="autocompletion">
+            <section class="mid-section">
+                <a class="saladfruit"><img src="{{ asset('img/saladfruit.png') }}"></a>
+                <section class="selectFruit">
+
+                    <input class="input" name="text" placeholder="Search a fruit..." type="search">
+                    <section class="autocompletion">
+                    </section>
                 </section>
             </section>
-        </section>
     </main>
 {% endblock %}

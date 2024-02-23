@@ -1,20 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Tutti Frutti - {% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>" id="css">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>Tutti Frutti - {% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>" id="css">
+    {% block stylesheets %}
+    {% endblock %}
 
-        {% block javascripts %}
-{% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body class="background">
-        {% block body %}{% endblock %}
-    </body>
-    <footer>
-        <img src="{{ asset('img/bannière.png') }}" class="bottom-image">
-    </footer>
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body class="background">
+
+<section class="nav-section">
+    <section class="profil-button">
+        <img src="{{ asset('img/icone-profil.png') }}" class="logo">
+        <section class="dropdown-content">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('app_discography', {'idUtilisateur': userID}) }}" class="top">My Discography</a>
+                <a href="{{ path('app_logout') }}" class="bottom">Log Out</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="top">Log In</a>
+                <a href="{{ path('app_register') }}" class="bottom">Register</a>
+            {% endif %}
+        </section>
+    </section>
+    <section class="home-button">
+        <a href="/"><img src="{{ asset('img/home.png') }}" class="logo"></a>
+    </section>
+
+</section>
+{% block body %}{% endblock %}
+</body>
+<footer>
+    <img src="{{ asset('img/bannière.png') }}" class="bottom-image">
+</footer>
 </html>
