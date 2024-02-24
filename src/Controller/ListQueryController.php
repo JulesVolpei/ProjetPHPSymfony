@@ -42,11 +42,23 @@ class ListQueryController extends AbstractController
 
     private function getVarsForListing(DiscogsApi $discogsApi, Fruit $fruit, int $page) : array {
         $vars = $discogsApi->getListByFruit($fruit,$page);
-        return [
-            'reponse' => $vars['results'],
-            'pagination' => $vars['pagination'],
-            'titre' => $vars['titre'],
-            'fruit' => $fruit->getId(),
-        ];
+        $user = $this->getUser();
+
+        if ($user) {
+            return [
+                'reponse' => $vars['results'],
+                'pagination' => $vars['pagination'],
+                'titre' => $vars['titre'],
+                'fruit' => $fruit->getId(),
+                'userID' => $user->getId(),
+            ];
+        } else {
+            return [
+                'reponse' => $vars['results'],
+                'pagination' => $vars['pagination'],
+                'titre' => $vars['titre'],
+                'fruit' => $fruit->getId(),
+            ];
+        }
     }
 }

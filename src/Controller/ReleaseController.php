@@ -27,10 +27,19 @@ class ReleaseController extends AbstractController
             $discographyRepository->ajouterReleaseAUser($userId, $releaseId);
 
         }
+        $user = $this->getUser();
 
-        return $this->render('release/index.html.twig', [
-            'reponse' => $response,
-            'image' => $discogsApi->getReleaseImg($response['title'], $year, $idRelease),
-        ]);
+        if ($user) {
+            return $this->render('release/index.html.twig', [
+                'reponse' => $response,
+                'image' => $discogsApi->getReleaseImg($response['title'], $year, $idRelease),
+                'userID' => $user->getId(),
+            ]);
+        } else {
+            return $this->render('release/index.html.twig', [
+                'reponse' => $response,
+                'image' => $discogsApi->getReleaseImg($response['title'], $year, $idRelease),
+            ]);
+        }
     }
 }
