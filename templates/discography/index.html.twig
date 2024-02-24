@@ -3,23 +3,51 @@
 {% block title %}Hello DiscographyController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    <h2> {{ utilisateur }} </h2>
-    {% for release in utilisateurDisco %}
-    <h3> {{ release.idRelease }} </h3>
-    {% endfor %}
-    {{dump(userReleases)}}
+    <h2>Discographie de : {{ utilisateur }}</h2>
+    <section class="cards-music">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/reds_/Desktop/S6/Développement avancé - Projet/DossierMieux/ProjetPHPSymfony/src/Controller/DiscographyController.php</code></li>
-        <li>Your template at <code>C:/Users/reds_/Desktop/S6/Développement avancé - Projet/DossierMieux/ProjetPHPSymfony/templates/discography/index.html.twig</code></li>
-    </ul>
-</div>
+        {% for release in reponse %}
+            <section class="card">
+                {% if release.cover_image %}
+                    <img src="{{ release.cover_image }}" class="cover-image">
+                {% endif %}
+                <p><a target="_blank" class="card-title" href="/release/{{release.id}}">{{release.title}}</a></p>
+            </section>
+        {% endfor %}
+
+        {% set firstPage = false %}
+        {% if pagination.page == 1 %}
+            {% set firstPage = true %}
+        {% endif %}
+
+        {% set lastPage = false %}
+        {% if pagination.page == pagination.pages %}
+            {% set lastPage = true %}
+        {% endif %}
+    </section>
+    <section class="mid-section">
+        {# Pagination #}
+        <p>
+            {% if not firstPage %}
+            <a href="/list_query/{{ fruit }}/page-{{ pagination.page - 1 }}">
+                {% endif %}
+                <
+                {% if not firstPage %}
+            </a>
+            {% endif %}
+
+            Page : {{ pagination.page }} / {{ pagination.pages }}
+            {% if not lastPage %}
+            <a href="/list_query/{{ fruit }}/page-{{ pagination.page + 1 }}">
+                {% endif %}
+                >
+                {% if not lastPage %}
+            </a>
+            {% endif %}
+    </section>
 {% endblock %}
