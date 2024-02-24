@@ -21,14 +21,23 @@ class DiscographyRepository extends ServiceEntityRepository
         parent::__construct($registry, Discography::class);
     }
 
-    public function trouverLesReleases($userId): array
-    {
+    public function trouverLesReleases($userId): array {
         return $this->createQueryBuilder('d')
-            ->select('DISTINCT d.idRelease')
+            ->select('d.idRelease')
             ->where('d.id_user = :userId')
             ->setParameter('userId', $userId)
             ->getQuery()
             ->getResult();
+    }
+
+    public function verifieSiUserADejaLeRelease($userId, $idRelease): array {
+        return $this->createQueryBuilder('d')
+        ->select('d')
+        ->where('d.id_user = :userId AND d.idRelease = :idRelease')
+        ->setParameter('userId', $userId)
+        ->setParameter('idRelease', $idRelease)
+        ->getQuery()
+        ->getResult();
     }
 
     public function ajouterReleaseAUser($userId, $releaseId)

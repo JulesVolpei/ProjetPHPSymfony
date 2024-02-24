@@ -23,8 +23,12 @@ class ReleaseController extends AbstractController
             $userId = $this->getUser()->getId();
 
             $releaseId = $idRelease;
+            
+            $userARelease = $discographyRepository->verifieSiUserADejaLeRelease($userId, $releaseId);
 
-            $discographyRepository->ajouterReleaseAUser($userId, $releaseId);
+            if (empty($userARelease)) { // L'utilisateur n'a pas encore ajouté la release à sa discographie
+                $discographyRepository->ajouterReleaseAUser($userId, $releaseId);
+            }
 
         }
         $user = $this->getUser();
