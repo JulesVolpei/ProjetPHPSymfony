@@ -21,13 +21,20 @@ class DiscographyController extends AbstractController
         $userDiscography = $disco->trouverLesReleases($user->getId());
         $userReleases = $discogsApi->getDatasAvecPlusieursReleases($userDiscography);
 
+        $testImage = [];
+        $cmpt = 0;
+        foreach ($userReleases as $userRelease) {
+            $testImage[$cmpt] = $discogsApi->getReleaseImg($userRelease["title"], $userRelease["year"], $userRelease["id"]);
+            $cmpt += 1;
+        }
+
         return $this->render('discography/index.html.twig', [
             'controller_name' => 'DiscographyController',
             'utilisateur' => $user->getUserIdentifier(),
-            'utilisateurDisco'=> $userDiscography,
-            'reponse' => $userReleases['results'],
-            'pagination' => $userReleases['pagination'],
+            'reponse' => $userReleases,
+            'pagination' => $userReleases,
             'userID' => $user->getId(),
+            'testImage'=> $testImage,
         ]);
     }
 }

@@ -10,44 +10,8 @@
 
     <h2>Discographie de : {{ utilisateur }}</h2>
     <section class="cards-music">
+        <h2> {{ reponse|length }} </h2>
+        {{ dump(reponse) }}
+        {{ dump(testImage) }}
 
-        {% for release in reponse %}
-            <section class="card">
-                {% if release.cover_image %}
-                    <img src="{{ release.cover_image }}" class="cover-image">
-                {% endif %}
-                <p><a target="_blank" class="card-title" href="/release/{{release.id}}">{{release.title}}</a></p>
-            </section>
-        {% endfor %}
-
-        {% set firstPage = false %}
-        {% if pagination.page == 1 %}
-            {% set firstPage = true %}
-        {% endif %}
-
-        {% set lastPage = false %}
-        {% if pagination.page == pagination.pages %}
-            {% set lastPage = true %}
-        {% endif %}
-    </section>
-    <section class="mid-section">
-        {# Pagination #}
-        <p>
-            {% if not firstPage %}
-            <a href="/list_query/{{ fruit }}/page-{{ pagination.page - 1 }}">
-                {% endif %}
-                <
-                {% if not firstPage %}
-            </a>
-            {% endif %}
-
-            Page : {{ pagination.page }} / {{ pagination.pages }}
-            {% if not lastPage %}
-            <a href="/list_query/{{ fruit }}/page-{{ pagination.page + 1 }}">
-                {% endif %}
-                >
-                {% if not lastPage %}
-            </a>
-            {% endif %}
-    </section>
 {% endblock %}

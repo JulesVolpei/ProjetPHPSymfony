@@ -45,17 +45,16 @@ class DiscogsApi
                 'User-Agent' =>  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
             ],
         ]);
-        $releaseIds = [];
+        $responses = [];
         foreach ($idReleases as $release) {
-            $releaseIds[] = $release['idRelease'];
-        }
-                
-        $response = json_decode($client->request(
-            'GET',
-            'https://api.discogs.com/database/search?type=release&q='. implode('&&',$releaseIds)
-        )->getContent(),true);
-                
-        return $response;
+            $response = json_decode($client->request(
+                'GET',
+                'https://api.discogs.com/releases/' . $release['idRelease']
+            )->getContent(), true);
+    
+            $responses[] = $response;
+        }     
+        return $responses;
     }
 
     public function getReleaseImg(string $titleRelease, string $year, int $idRelease) : string {
