@@ -25,7 +25,8 @@ class DiscographyController extends AbstractController
             'controller_name' => 'DiscographyController',
             'utilisateur' => $user->getUserIdentifier(),
             'utilisateurDisco'=> $userDiscography,
-            'userReleases' => $userReleases,
+            'reponse' => $userReleases['results'],
+            'pagination' => $userReleases['pagination'],
             'userID' => $user->getId(),
         ]);
     }
