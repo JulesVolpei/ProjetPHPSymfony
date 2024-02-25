@@ -14,12 +14,17 @@ use App\Service\DiscogsApi;
 
 class DiscographyController extends AbstractController
 {
-    #[Route('/{idUtilisateur}/discography', name: 'app_discography')]
-    public function index(DiscographyRepository $disco, mixed $idUtilisateur = null, DiscogsApi $discogsApi): Response
+    #[Route('/{idUtilisateur}/discography/page-{page}', name: 'app_discography')]
+    public function index(DiscographyRepository $disco, mixed $idUtilisateur = null, DiscogsApi $discogsApi, int $page = 1): Response
     {
         $user = $this->getUser();
-        $userDiscography = $disco->trouverLesReleases($user->getId());
-        $userReleases = $discogsApi->getDatasAvecPlusieursReleases($userDiscography);
+        $indicePage = $page - 1;
+        
+        
+        $userDiscography = $disco->trouverLesReleases($user->getId()); // Passer qu'un array avec entre les deux coeffs
+        $arrayIDRelease = array_chunk($userDiscography, 10); // Divise le tableau en dix sous tableau
+
+        $userReleases = $discogsApi->getDatasAvecPlusieursReleases($arrayIDRelease[$indicePage]); // Passe le indicePage-ième sous tableau
 
         $testImage = [];
         $cmpt = 0;
