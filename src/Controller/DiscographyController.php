@@ -26,7 +26,7 @@ class DiscographyController extends AbstractController
         
         $infos = [];
         $cmpt = 0;
-        foreach ($arrayIDRelease[0] as $idRelease) {
+        foreach ($arrayIDRelease[$indicePage] as $idRelease) {
             $infos[$cmpt] = $disco->retrouveInfosDiscography($idRelease);
             $cmpt += 1;
         } 
