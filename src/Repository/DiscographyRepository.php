@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Discography;
+use App\Entity\DiscographyInfos;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -53,10 +54,21 @@ class DiscographyRepository extends ServiceEntityRepository
         $entityManager->flush();
     }
 
-    /*TODO: - Faire la requête pour avoir la discogrphy d'un utilisateur ✅
-            - Faire en sorte que le bouton ajoute l'idRelease à l'utilisateur dans la table discography ✅
-            - Passer dans le controller le résultat (refaire la requête vers discogs avec les idReleases)
-    */
+    public function retrouveInfosDiscography($idRelease): array {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQueryBuilder()
+        ->select('di.releaseTitre, di.image')
+        ->from('App\Entity\DiscographyInfos', 'di')
+        ->where('di.idRelease = :releaseId')
+        ->setParameter('releaseId', $idRelease)
+        ->getQuery();
+
+        $result = $query->getResult();
+
+        return $result;
+    }
+
 
 //    /**
 //     * @return Discography[] Returns an array of Discography objects
