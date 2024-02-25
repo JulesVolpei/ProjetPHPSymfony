@@ -37,9 +37,10 @@ class DiscographyController extends AbstractController
             'controller_name' => 'DiscographyController',
             'utilisateur' => $user->getUserIdentifier(),
             'reponse' => $userReleases,
-            'pagination' => $userReleases,
+            'pagination' => $page,
             'userID' => $user->getId(),
             'testImage'=> $testImage,
+            'arrayChunk' => $arrayIDRelease
         ]);
     }
 }

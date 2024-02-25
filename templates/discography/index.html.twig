@@ -10,8 +10,43 @@
 
     <h2>Discographie de : {{ utilisateur }}</h2>
     <section class="cards-music">
-        <h2> {{ reponse|length }} </h2>
-        {{ dump(reponse) }}
-        {{ dump(testImage) }}
+        {% for i in range(0, reponse|length - 1) %}
+            <section class="card">
+                <img src="{{ testImage[i] }}" class="cover-image">
+                <p><a target="_blank" class="card-title" href="/release/{{reponse[i].id}}">{{reponse[i].title}}</a></p>
+            </section>
+        {% endfor %}
+    </section>
+    {% set firstPage = false %}
+        {% if pagination == 0 %}
+            {% set firstPage = true %}
+        {% endif %}
 
+        {% set lastPage = false %}
+        {% if pagination == arrayChunk|length %}
+            {% set lastPage = true %}
+        {% endif %}
+        {% set avant = pagination - 1 %}
+        {% set apres = pagination + 1%}
+    </section>
+    <section class="mid-section">
+        {# Pagination #}
+        <p> 
+            {% if not firstPage %}
+            <a href="/{{userID}}/discography/page-{{avant}}">
+                {% endif %}
+                <
+                {% if not firstPage %}
+            </a>
+            {% endif %}
+
+            Page : {{ pagination }} / {{ arrayChunk|length }}
+            {% if not lastPage %}
+            <a href="/{{userID}}/discography/page-{{apres}}">
+                {% endif %}
+                >
+                {% if not lastPage %}
+            </a>
+            {% endif %}
+    </section>
 {% endblock %}
