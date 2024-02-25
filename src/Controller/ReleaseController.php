@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\DiscographyInfos;
+use App\Repository\DiscographyInfosRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,11 +14,16 @@ use App\Repository\DiscographyRepository;
 class ReleaseController extends AbstractController
 {
     #[Route('/release/{idRelease}', name: 'app_release')]
-    public function index(int $idRelease, DiscogsApi $discogsApi, DiscographyRepository $discographyRepository, Request $request): Response
+    public function index(int $idRelease, DiscogsApi $discogsApi, DiscographyRepository $discographyRepository, Request $request, DiscographyInfosRepository $discographyInfos): Response
     {
 
         $response = $discogsApi->getDatas($idRelease);
-        $year = $response['released_formatted'];
+        if (array_key_exists('released_formatted', $response)) {
+            $year = $response['released_formatted'];
+        } else {
+            $year = "Pas précisé";
+        }
+        $image = $discogsApi->getReleaseImg($response['title'], $year, $idRelease);
 
         if ($request->isMethod('POST')) {
 
@@ -28,6 +35,8 @@ class ReleaseController extends AbstractController
 
             if (empty($userARelease)) { // L'utilisateur n'a pas encore ajouté la release à sa discographie
                 $discographyRepository->ajouterReleaseAUser($userId, $releaseId);
+                // On ajoute en plus les informations liées à la release
+                $discographyInfos->ajouteInfosDiscographie($idRelease, $response['title'], $image);
             }
 
         }
@@ -36,13 +45,13 @@ class ReleaseController extends AbstractController
         if ($user) {
             return $this->render('release/index.html.twig', [
                 'reponse' => $response,
-                'image' => $discogsApi->getReleaseImg($response['title'], $year, $idRelease),
+                'image' => $image,
                 'userID' => $user->getId(),
             ]);
         } else {
             return $this->render('release/index.html.twig', [
                 'reponse' => $response,
-                'image' => $discogsApi->getReleaseImg($response['title'], $year, $idRelease),
+                'image' => $image,
             ]);
         }
     }

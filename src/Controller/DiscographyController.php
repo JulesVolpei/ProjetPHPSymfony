@@ -23,24 +23,23 @@ class DiscographyController extends AbstractController
         
         $userDiscography = $disco->trouverLesReleases($user->getId()); // Passer qu'un array avec entre les deux coeffs
         $arrayIDRelease = array_chunk($userDiscography, 10); // Divise le tableau en dix sous tableau
-
-        $userReleases = $discogsApi->getDatasAvecPlusieursReleases($arrayIDRelease[$indicePage]); // Passe le indicePage-ième sous tableau
-
-        $testImage = [];
+        
+        $infos = [];
         $cmpt = 0;
-        foreach ($userReleases as $userRelease) {
-            $testImage[$cmpt] = $discogsApi->getReleaseImg($userRelease["title"], $userRelease["year"], $userRelease["id"]);
+        foreach ($arrayIDRelease[$indicePage] as $idRelease) {
+            $infos[$cmpt] = $disco->retrouveInfosDiscography($idRelease);
             $cmpt += 1;
-        }
+        } 
+
+        // J'ai tout dans info normalement
 
         return $this->render('discography/index.html.twig', [
             'controller_name' => 'DiscographyController',
             'utilisateur' => $user->getUserIdentifier(),
-            'reponse' => $userReleases,
             'pagination' => $page,
             'userID' => $user->getId(),
-            'testImage'=> $testImage,
-            'arrayChunk' => $arrayIDRelease
+            'arrayChunk' => $arrayIDRelease,
+            'reponse' => $infos,
         ]);
     }
 }

@@ -12,13 +12,13 @@
     <section class="cards-music">
         {% for i in range(0, reponse|length - 1) %}
             <section class="card">
-                <img src="{{ testImage[i] }}" class="cover-image">
-                <p><a target="_blank" class="card-title" href="/release/{{reponse[i].id}}">{{reponse[i].title}}</a></p>
+                <img src="{{ reponse[i][0].image }}" class="cover-image">
+                <p><a target="_blank" class="card-title" href="/release/{{arrayChunk[0][i].idRelease}}">{{reponse[i][0].releaseTitre}}</a></p>
             </section>
         {% endfor %}
     </section>
     {% set firstPage = false %}
-        {% if pagination == 0 %}
+        {% if pagination == 1 %}
             {% set firstPage = true %}
         {% endif %}
 
@@ -27,7 +27,7 @@
             {% set lastPage = true %}
         {% endif %}
         {% set avant = pagination - 1 %}
-        {% set apres = pagination + 1%}
+        {% set apres = pagination + 1 %}
     </section>
     <section class="mid-section">
         {# Pagination #}
