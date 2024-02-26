@@ -13,7 +13,7 @@
         {% for i in range(0, reponse|length - 1) %}
             <section class="card">
                 <img src="{{ reponse[i][0].image }}" class="cover-image">
-                <p><a target="_blank" class="card-title" href="/release/{{arrayChunk[0][i].idRelease}}">{{reponse[i][0].releaseTitre}}</a></p>
+                <p><a target="_blank" class="card-title" href="/release/{{arrayChunk[pagination-1][i].idRelease}}">{{reponse[i][0].releaseTitre}}</a></p>
             </section>
         {% endfor %}
     </section>
